@@ -1,4 +1,4 @@
-class Admin::CategoriesController < ApplicationController
+class Admin::CategoriesController < AdminController
   before_action :set_admin_category, only: %i[ show edit update destroy ]
 
   # GET /admin/categories or /admin/categories.json
@@ -65,6 +65,6 @@ class Admin::CategoriesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def admin_category_params
-      params.require(:admin_category).permit(:name, :description)
+      params.require(:category).permit(:name, :description)
     end
 end

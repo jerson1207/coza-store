@@ -6,7 +6,7 @@
   <% @admin_categories.each do |admin_category| %>
     <%= render admin_category %>
     <p>
-      <%= link_to "Show this category", admin_category %>
+      <%= link_to "Show this category", [:admin, admin_category] %>
     </p>
   <% end %>
 </div>
