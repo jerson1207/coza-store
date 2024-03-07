@@ -1,0 +1,54 @@
+<div class="max-w-md mx-auto bg-white shadow-md rounded-md p-6">
+  <h2 class="text-xl font-semibold mb-4">Create Product</h2>
+  <%= form_with(model: [:admin, admin_product], html: {class: "mt-4"}) do |form| %>
+    <% if admin_product.errors.any? %>
+      <div class="text-red-500">
+        <h2><%= pluralize(admin_product.errors.count, "error") %> prohibited this admin_product from being saved:</h2>
+        <ul>
+          <% admin_product.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    
+    <div class="mb-4">
+      <%= form.label :name, class: "block text-sm font-medium text-gray-700" %>
+      <%= form.text_field :name, class: "mt-1 p-2 block w-full border border-gray-300 rounded-md focus:outline-none focus:border-blue-500" %>
+    </div>
+
+    <div class="mb-4">
+      <%= form.label :description, class: "block text-sm font-medium text-gray-700" %>
+      <%= form.text_area :description, class: "mt-1 p-2 block w-full border border-gray-300 rounded-md focus:outline-none focus:border-blue-500" %>
+    </div>
+
+    <div class="my-4">
+    <% if admin_product.images.any? %>
+      <% admin_product.images.each do |image| %>
+        <%= image_tag image, class: "w-20 h-20 object-cover rounded-md" %>
+      <% end %>
+    <% end %>
+    <%= form.label :images %>
+    <%= form.file_field :images, multiple: true, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+    <div class="mb-4">
+      <%= form.label :price, class: "block text-sm font-medium text-gray-700" %>
+      <%= form.number_field :price, class: "mt-1 p-2 block w-full border border-gray-300 rounded-md focus:outline-none focus:border-blue-500" %>
+    </div>
+
+    <div class="mb-4">
+      <%= form.label :category_id, class: "block text-sm font-medium text-gray-700" %>
+      <%= form.text_field :category_id, class: "mt-1 p-2 block w-full border border-gray-300 rounded-md focus:outline-none focus:border-blue-500" %>
+    </div>
+
+    <div class="mb-4">
+      <%= form.label :active, class: "block text-sm font-medium text-gray-700" %>
+      <%= form.check_box :active, class: "form-checkbox mt-1 block w-6 h-6 text-blue-600 border-gray-300 rounded focus:ring-blue-500" %>
+    </div>
+
+    <div class="flex justify-end">
+      <%= form.submit class: "px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600" %>
+    </div>
+  <% end %>
+</div>
