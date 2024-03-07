@@ -1,0 +1,38 @@
+<div class="max-w-md mx-auto bg-white shadow-md rounded-md p-6">
+  <%= form_with(model: [:admin, admin_order]) do |form| %>
+    <% if admin_order.errors.any? %>
+      <div class="text-red-500">
+        <h2><%= pluralize(admin_order.errors.count, "error") %> prohibited this admin_order from being saved:</h2>
+        <ul>
+          <% admin_order.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="mb-4">
+      <%= form.label :customer_email, class: "block text-sm font-medium text-gray-700" %>
+      <%= form.text_field :customer_email, class: "mt-1 p-2 block w-full border border-gray-300 rounded-md focus:outline-none focus:border-blue-500" %>
+    </div>
+
+    <div class="mb-4">
+      <%= form.label :fulfilled, class: "block text-sm font-medium text-gray-700" %>
+      <%= form.check_box :fulfilled, class: "form-checkbox mt-1 block w-6 h-6 text-blue-600 border-gray-300 rounded focus:ring-blue-500" %>
+    </div>
+
+    <div class="mb-4">
+      <%= form.label :total, class: "block text-sm font-medium text-gray-700" %>
+      <%= form.number_field :total, class: "mt-1 p-2 block w-full border border-gray-300 rounded-md focus:outline-none focus:border-blue-500" %>
+    </div>
+
+    <div class="mb-4">
+      <%= form.label :address, class: "block text-sm font-medium text-gray-700" %>
+      <%= form.text_field :address, class: "mt-1 p-2 block w-full border border-gray-300 rounded-md focus:outline-none focus:border-blue-500" %>
+    </div>
+
+    <div class="flex justify-end">
+      <%= form.submit class: "px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600" %>
+    </div>
+  <% end %>
+</div>

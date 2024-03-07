@@ -72,3 +72,4 @@ end
 gem "devise", "~> 4.9"
 gem "font-awesome-sass"
 gem "font-awesome-rails"
+gem "pagy", "~> 6.2"
