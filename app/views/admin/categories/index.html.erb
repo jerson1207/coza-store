@@ -13,12 +13,16 @@
           <thead class="bg-white border-b">
             <tr>
               <th scope="col" class="text-sm font-medium text-gray-800 px-6 py-4 text-left">
+                Images
               </th>
               <th scope="col" class="text-sm font-medium text-gray-800 px-6 py-4 text-left">
                 Name
               </th>
               <th scope="col" class="text-sm font-medium text-gray-800 px-6 py-4 text-left">
                 Description
+              </th>
+              <th scope="col" class="text-sm font-medium text-gray-800 px-6 py-4 text-left">
+                Action
               </th>
             </tr>
           </thead>
@@ -33,6 +37,15 @@
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">
                   <%= c.description %>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 flex items-center">
+                  <%= link_to edit_admin_category_path(c), class: "mr-2" do %>
+                    <i class="fa-solid fa-pen-to-square"></i>
+                  <% end %>
+                  <%= link_to admin_category_path(c), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "ml-2" do %>
+                    <i class="fa-solid fa-trash"></i>
+                  <% end %>
+
                 </td>
               </tr>
             <% end %>

@@ -1,13 +1,9 @@
 class Admin::CategoriesController < AdminController
-  before_action :set_admin_category, only: %i[ show edit update destroy ]
+  before_action :set_admin_category, only: %i[ edit update destroy ]
 
   # GET /admin/categories or /admin/categories.json
   def index
     @admin_categories = Category.all
-  end
-
-  # GET /admin/categories/1 or /admin/categories/1.json
-  def show
   end
 
   # GET /admin/categories/new
@@ -25,7 +21,7 @@ class Admin::CategoriesController < AdminController
 
     respond_to do |format|
       if @admin_category.save
-        format.html { redirect_to admin_category_url(@admin_category), notice: "Category was successfully created." }
+        format.html { redirect_to admin_categories_url, notice: "Category was successfully created." }
         format.json { render :show, status: :created, location: @admin_category }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +34,7 @@ class Admin::CategoriesController < AdminController
   def update
     respond_to do |format|
       if @admin_category.update(admin_category_params)
-        format.html { redirect_to admin_category_url(@admin_category), notice: "Category was successfully updated." }
+        format.html { redirect_to admin_categories_url, notice: "Category was successfully updated." }
         format.json { render :show, status: :ok, location: @admin_category }
       else
         format.html { render :edit, status: :unprocessable_entity }

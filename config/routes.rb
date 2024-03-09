@@ -4,14 +4,14 @@ Rails.application.routes.draw do
     resources :products do
       resources :stocks
     end
-    resources :categories
+    resources :categories, except: [:show]
   end
   
   devise_for :admins
   get "up" => "rails/health#show", as: :rails_health_check
 
   root "home#index"
-
+  
   authenticated :admin_user do
     root to: 'admin#index', as: :root_admin
   end
