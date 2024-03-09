@@ -1,13 +1,9 @@
 class Admin::ProductsController < AdminController
-  before_action :set_admin_product, only: %i[ show edit update destroy ]
+  before_action :set_admin_product, only: %i[ edit update destroy ]
 
   # GET /admin/products or /admin/products.json
   def index
     @admin_products = Product.all
-  end
-
-  # GET /admin/products/1 or /admin/products/1.json
-  def show
   end
 
   # GET /admin/products/new
@@ -25,7 +21,7 @@ class Admin::ProductsController < AdminController
 
     respond_to do |format|
       if @admin_product.save
-        format.html { redirect_to admin_product_url(@admin_product), notice: "Product was successfully created." }
+        format.html { redirect_to admin_products_path, notice: "Product was successfully created." }
         format.json { render :show, status: :created, location: @admin_product }
       else
         format.html { render :new, status: :unprocessable_entity }

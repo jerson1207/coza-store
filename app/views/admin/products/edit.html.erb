@@ -1,10 +1,4 @@
-<h1>Editing product</h1>
-
-<%= render "form", admin_product: @admin_product %>
-
-<br>
-
-<div>
-  <%= link_to "Show this product", [:admin, @admin_product] %> |
-  <%= link_to "Back to products", admin_products_path %>
+<div class="mx-auto max-w-md p-6 bg-white rounded-lg shadow-md">
+  <a href="<%= admin_products_path %>" class="text-blue-500 hover:underline mb-4 block">Back to products</a>
+  <%= render "form", admin_product: @admin_product %>
 </div>
