@@ -1,9 +1,5 @@
-<h1>New category</h1>
+<div class="mx-auto max-w-md p-6 bg-white rounded-lg shadow-md">
+    <a href="<%= admin_categories_path %>" class="text-blue-500 hover:underline mb-4 block">Back to categories</a>
 
-<%= render "form", admin_category: @admin_category %>
-
-<br>
-
-<div>
-  <%= link_to "Back to categories", admin_categories_path %>
+    <%= render "form", admin_category: @admin_category %>
 </div>
