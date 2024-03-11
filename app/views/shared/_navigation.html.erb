@@ -13,6 +13,9 @@
               <%= icon 'fa-solid', 'shopping-cart' %>
             <% end %>
           </div>
+          <% if admin_signed_in? %>
+            <%= link_to "Admin", admin_path, class: "flex space-x-10" %>
+          <% end %>
         </div>
       </div>
     </div>
