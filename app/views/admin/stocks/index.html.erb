@@ -1,15 +1,49 @@
-
-  <p style="color: green"><%= notice %></p>
+<div class="max-w-[70%] mx-auto bg-white shadow-md rounded-md p-6">
+  <% if @product.images.any? %>
+    <%= image_tag(@product.images.first, size: "50x50", class: "rounded-full") %>
+  <% else %>
+    <%= image_tag("https://via.placeholder.com/50", class: "rounded-full") %>
+  <% end %>
+  <h2 class="text-xl font-semibold mb-4"><%= @product.name %></h2>
 
   <% if notice.present? %>
     <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
   <% end %>
 
-  <div class="flex justify-between items-center">
-    <h1 class="font-bold text-4xl">Stocks</h1>
-    <%= link_to "New stock", new_admin_product_stock_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+  <div class="flex justify-between items-center mb-4">
+    <div>
+      <%= link_to "Back", admin_products_path, class: "rounded-lg py-1 px-2 bg-gray-300 text-gray-700 block font-medium text-xs" %>
+    </div>
+    <h1 class="font-bold text-2xl">Stocks</h1>
+    <%= link_to "New stock", new_admin_product_stock_path, class: "rounded-lg py-1 px-2 bg-blue-600 text-white block font-medium text-xs" %>
   </div>
 
-  <div id="admin_stocks" class="min-w-full">
-    <%= render @admin_stocks %>
+  <div class="overflow-x-auto">
+    <table class="min-w-full">
+      <thead>
+        <tr>
+          <th class="text-sm font-medium text-gray-800 px-6 py-4 text-left">Product</th>
+          <th class="text-sm font-medium text-gray-800 px-6 py-4 text-left">Size</th>
+          <th class="text-sm font-medium text-gray-800 px-6 py-4 text-left">Amount</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @admin_stocks.each do |s| %>
+          <tr class="bg-gray-50 border-b">
+            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800"><%= s.product_id %></td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800"><%= s.size %></td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800"><%= s.amount %></td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 flex items-center">
+              <%= link_to edit_admin_product_stock_path(s.product_id, s), class: "mr-2" do %>
+                <i class="fa-solid fa-pen-to-square"></i>
+              <% end %>
+              <%= link_to admin_product_stock_path(s.product_id, s), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "ml-2" do %>
+                <i class="fa-solid fa-trash"></i>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
   </div>
+</div>

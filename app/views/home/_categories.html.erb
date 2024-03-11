@@ -1,0 +1,66 @@
+<div class="py-16">
+  <div class="container mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="col-span-1 md:col-span-1 banner-container">
+        <div class="bg-transparent rounded-lg overflow-hidden shadow-lg relative">
+          <%= image_tag("banner/banner-01.jpg", alt: "IMG-slide", class: "w-full") %>
+
+          <div class="absolute top-0 left-0 bg-transparent p-6 text-black">
+            <div class="block1-txt-child1 mb-2">
+              <p class="block1-name text-2xl font-semibold">Men</p>
+              <p class="block1-info text-lg">Spring 2018</p>
+            </div>
+          </div>
+
+          <div class="absolute bottom-0 left-0 bg-transparent p-6 text-white shop">
+            <div class="block1-txt-child2">
+              <%= link_to shop_path do %>
+                <span class="block1-link text-lg font-semibold">Shop Now</span>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-span-1 md:col-span-1 banner-container">
+        <div class="bg-transparent rounded-lg overflow-hidden shadow-lg relative">
+          <%= image_tag("banner/banner-02.jpg", alt: "IMG-slide", class: "w-full") %>
+
+          <div class="absolute top-0 left-0 bg-transparent p-6 text-black">
+            <div class="block1-txt-child1 mb-2">
+              <p class="block1-name text-2xl font-semibold">Men</p>
+              <p class="block1-info text-lg">Spring 2018</p>
+            </div>
+          </div>
+
+          <div class="absolute bottom-0 left-0 bg-transparent p-6 text-white shop">
+            <div class="block1-txt-child2">
+              <%= link_to shop_path do %>
+                <span class="block1-link text-lg font-semibold">Shop Now</span>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-span-1 md:col-span-1 banner-container">
+        <div class="bg-transparent rounded-lg overflow-hidden shadow-lg relative">
+          <%= image_tag("banner/banner-03", alt: "IMG-slide", class: "w-full") %>
+
+          <div class="absolute top-0 left-0 bg-transparent p-6 text-black">
+            <div class="block1-txt-child1 mb-2">
+              <p class="block1-name text-2xl font-semibold">Men</p>
+              <p class="block1-info text-lg">Spring 2018</p>
+            </div>
+          </div>
+
+          <div class="absolute bottom-0 left-0 bg-transparent p-6 text-white shop">
+            <div class="block1-txt-child2">
+              <%= link_to shop_path do %>
+                <span class="block1-link text-lg font-semibold">Shop Now</span>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

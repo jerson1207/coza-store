@@ -1,5 +1,3 @@
-<p style="color: green"><%= notice %></p>
-
 <div class="flex justify-between items-center">
   <h1 class="font-bold text-4xl">Products</h1>
   <%= link_to "New Product", new_admin_product_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
@@ -38,12 +36,12 @@
             <% @admin_products.each do |p| %>
               <tr class="bg-gray-50 border-b">
                 <td class="px-6 py-4 whitepsace-nowrap tex-sm font-medium text-gray-800 underline">
-                    <%= p.images.any? ? image_tag(p.images.first, size: "50x50") : image_tag("https://via.placeholder.com/50") %>
-                  </td>
-                <td class="px-6 py-4 whitepsace-nowrap tex-sm font-medium text-gray-800 underline">
-                  <%= link_to p.name, edit_admin_product_path(p) %>
+                  <%= p.images.any? ? image_tag(p.images.first, size: "50x50") : image_tag("https://via.placeholder.com/50") %>
                 </td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 underline">
+                <td class="px-6 py-4 whitepsace-nowrap tex-sm font-medium text-gray-800">
+                  <%= p.name %>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">
                   <%= p.description %>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">
@@ -62,6 +60,7 @@
                   <%= link_to admin_product_path(p), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "ml-2" do %>
                     <i class="fa-solid fa-trash"></i>
                   <% end %>
+                  <%= link_to "Stocks", admin_product_stocks_path(p), class: "ml-2" %>
                 </td>
               </tr>
               

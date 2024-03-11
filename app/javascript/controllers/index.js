@@ -4,6 +4,12 @@
 
 import { application } from "./application"
 
+import BannerController from "./banner_controller"
+application.register("banner", BannerController)
+
+import CarouselController from "./carousel_controller"
+application.register("carousel", CarouselController)
+
 import CartController from "./cart_controller"
 application.register("cart", CartController)
 

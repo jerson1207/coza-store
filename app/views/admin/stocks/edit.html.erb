@@ -1,10 +1,4 @@
-<h1>Editing stock</h1>
-
-<%= render "form", admin_stock: @admin_stock %>
-
-<br>
-
-<div>
-  <%= link_to "Show this stock", @admin_stock %> |
-  <%= link_to "Back to stocks", admin_stocks_path %>
+<div class="mx-auto max-w-md p-6 bg-white rounded-lg shadow-md">
+  <a href="<%= admin_product_stocks_path(@product) %>" class="text-blue-500 hover:underline mb-4 block">Back to stocks</a>
+  <%= render "form", admin_stock: @admin_stock %>
 </div>
