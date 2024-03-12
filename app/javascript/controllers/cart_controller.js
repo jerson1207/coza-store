@@ -68,6 +68,8 @@ export default class extends Controller {
       body: JSON.stringify(payload)
     }).then(response => {
         if (response.ok) {
+          console.log("Payment successful");
+          this.clear(); 
           response.json().then(body => {
             window.location.href = body.url
           })
