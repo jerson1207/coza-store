@@ -59,6 +59,7 @@ class CheckoutsController < ApplicationController
       line_items.each do |item_params|
         product_id = item_params["price_data"]["product_data"]["metadata"]["product_id"]
         quantity = item_params["quantity"]
+        size = item_params["price_data"]["product_data"]["metadata"]["size"]
         price = item_params["price_data"]["unit_amount"]
 
         order_item = OrderItem.new(
@@ -66,7 +67,8 @@ class CheckoutsController < ApplicationController
           product_id: product_id,
           user_id: current_user.id,
           quantity: quantity,
-          price: price
+          price: price,
+          size: size
         )
 
         unless order_item.save

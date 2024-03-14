@@ -134,3 +134,7 @@ Product.all.each do |product|
   Stock.create(product: product, size: 'Size L', amount: 100)
   Stock.create(product: product, size: 'Size XL', amount: 100)
 end
+
+# Admin
+Admin.create(email: "admin@test.com", password: "qwerty", password_confirmation: "qwerty")
+User.create(email: "user1@test.com", password: "qwerty", password_confirmation: "qwerty")

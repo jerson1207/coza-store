@@ -10,6 +10,7 @@ class Admin::OrdersController < AdminController
 
   # GET /admin/orders/1 or /admin/orders/1.json
   def show
+    @order_items = @admin_order.order_items
   end
 
   # GET /admin/orders/new
@@ -19,6 +20,7 @@ class Admin::OrdersController < AdminController
 
   # GET /admin/orders/1/edit
   def edit
+    @order_items = @admin_order.order_items
   end
 
   # POST /admin/orders or /admin/orders.json

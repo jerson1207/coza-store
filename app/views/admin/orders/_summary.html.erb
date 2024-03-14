@@ -1,6 +1,3 @@
-<h1>Editing order</h1>
-<%= render "form", admin_order: @admin_order %>
-
 <div class="bg-white rounded-lg shadow-md overflow-hidden">
   <table class="min-w-full divide-y divide-gray-200">
     
@@ -44,7 +41,6 @@
     <h3 class="text-md font-semibold mb-2">Shipping Information</h3>
     <div class="text-sm text-gray-900">Email: <%= @admin_order.customer_email %></div>
     <div class="text-sm text-gray-900">Shipping Address: <%= @admin_order.address %></div>
-    <div class="text-sm text-gray-900">Status: <%= order_status(@admin_order) %></div>
   </div>
 
   <!-- Total Section -->
