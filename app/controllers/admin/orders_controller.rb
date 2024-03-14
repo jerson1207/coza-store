@@ -1,7 +1,6 @@
 class Admin::OrdersController < AdminController
   before_action :set_admin_order, only: %i[ show edit update destroy ]
-  include Pagy::Backend
-
+  
 
   # GET /admin/orders or /admin/orders.json
   def index

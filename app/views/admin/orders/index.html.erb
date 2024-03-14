@@ -1,9 +1,7 @@
 <p style="color: green"><%= notice %></p>
 
-
 <div class="flex justify-between items-center">
   <h1 class="font-bold text-4xl">Order</h1>
-  <%= link_to "New Order", new_admin_order_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
 </div>
 <h2>Unfulfilled Orders</h2>
   <div class="flex flex-col w-full">
@@ -46,10 +44,17 @@
               <% end %>
             </tbody>
           </table>
-          <%== pagy_nav(@not_fulfilled_pagy) if @not_fulfilled_pagy.pages > 1 %>
+          <% if @not_fulfilled_pagy.pages > 1 %>
+  <nav aria-label="Page navigation">
+    <ul class="pagination justify-content-center">
+      <%== pagy_nav(@not_fulfilled_pagy, link_extra: 'class="page-link"', prev: '<span aria-hidden="true">&laquo;</span>'.html_safe, next: '<span aria-hidden="true">&raquo;</span>'.html_safe) %>
+    </ul>
+  </nav>
+<% end %>
         </div>
       </div>
     </div>
+    
   </div>
 
   <h2>Fulfilled Orders</h2>
@@ -93,7 +98,6 @@
               <% end %>
             </tbody>
           </table>
-          <%== pagy_nav(@fulfilled_pagy) if @fulfilled_pagy.pages > 1 %>
         </div>
       </div>
     </div>
