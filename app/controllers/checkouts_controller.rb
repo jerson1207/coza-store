@@ -1,9 +1,14 @@
 class CheckoutsController < ApplicationController
   def create
+
     stripe_secret_key = Rails.application.credentials.dig(:stripe, :secret_key)
     Stripe.api_key = stripe_secret_key
-
+   
+  
     cart = params[:cart]
+    email_params = params[:email]
+    address_params = params[:address]
+    
     line_items = cart.map do |item|
       product = Product.find(item["id"])
       product_stock = product.stocks.find{ |ps| ps.size == item["size"] }
@@ -31,7 +36,7 @@ class CheckoutsController < ApplicationController
     session = Stripe::Checkout::Session.create(
       mode: "payment",
       line_items: line_items,
-      success_url: "http://localhost:3000/success?line_items=#{URI.encode_www_form_component(line_items.to_json)}",
+      success_url: success_url(line_items, email_params, address_params),
       cancel_url: "http://localhost:3000/cancel",
       shipping_address_collection: { 
         allowed_countries: ['US', 'CA']
@@ -43,9 +48,12 @@ class CheckoutsController < ApplicationController
 
   def success
     line_items = JSON.parse(params[:line_items])
+    email = JSON.parse(params[:email])
+    address = JSON.parse(params[:address])
+    
     customer_email = current_user.email
-    address = "123 st"
-    order = Order.new(customer_email: customer_email, address: address, fulfilled: false)
+    address = address
+    order = Order.new(customer_email: email, address: address, fulfilled: false)
     order.user = current_user
     if order.save
       line_items.each do |item_params|
@@ -82,5 +90,15 @@ class CheckoutsController < ApplicationController
 
   def order_total(order)
     order.update(total: order.order_items.sum(&:price))
+  end
+
+  private
+
+  def success_url(line_items, email_params, address_params)
+    success_url = "http://localhost:3000/success"
+    success_url += "?line_items=#{URI.encode_www_form_component(line_items.to_json)}"
+    success_url += "&email=#{URI.encode_www_form_component(email_params.to_json)}"
+    success_url += "&address=#{URI.encode_www_form_component(address_params.to_json)}"
+    success_url
   end
 end

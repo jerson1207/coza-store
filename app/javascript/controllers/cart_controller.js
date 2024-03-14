@@ -2,35 +2,71 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="cart"
 export default class extends Controller {
-  initialize() {
+  static targets = ["email", "address"]
+  checkoutButton
 
-    console.log("cart controller initialized")
+  initialize() {
     const cart = JSON.parse(localStorage.getItem("cart"))
+   
     if (!cart) {
       return
-    }
+    }    
 
     let total = 0
     for (let i=0; i < cart.length; i++) {
       const item = cart[i]
       total += item.price * item.quantity
       const div = document.createElement("div")
-      div.classList.add("mt-2")
-      div.innerText = `Item: ${item.name} - $${item.price/100.0} - Size: ${item.size} - Quantity: ${item.quantity}`
+      var tbody = document.querySelector("table tbody")
+      var row = document.createElement("tr");
+      var cell1 = document.createElement("td");
+    
+      cell1.classList.add("py-4");
+      cell1.innerHTML = `
+        <div class="flex items-center">
+          <img class="h-16 w-16 mr-4" src="https://via.placeholder.com/150" alt="Product image">
+          <span class="font-semibold">${item.name}</span>
+        </div>
+      `;
+      
+      var cell2 = document.createElement("td");
+      cell2.classList.add("py-4");
+      cell2.innerHTML = `$${item.price/100.0}`;
+
+      var cell3 = document.createElement("td");
+      cell3.classList.add("py-4");
+      cell3.innerHTML = `<td class="py-4">
+                            <div class="flex items-center">
+                                <button class="border rounded-md py-2 px-4 mr-2">-</button>
+                                <span class="text-center w-8">${item.quantity}</span>
+                                <button class="border rounded-md py-2 px-4 ml-2">+</button>
+                            </div>
+                          </td>`;
+
+      var cell4 = document.createElement("td");
+      cell4.classList.add("py-4");
+      cell4.innerHTML = `${item.size}`;
+
+      var cell5 = document.createElement("td");
+      cell5.classList.add("py-4");
+      cell5.innerHTML = `$${total/100.0}`;
+
       const deleteButton = document.createElement("button")
       deleteButton.innerText = "Remove"
-      console.log("item.id: ", item.id)
       deleteButton.value = JSON.stringify({id: item.id, size: item.size})
-      deleteButton.classList.add("bg-gray-500", "rounded", "text-white", "px-2", "py-1", "ml-2")
+      deleteButton.classList.add("bg-gray-500", "rounded", "text-white", "px-2", "py-1", "d-flex", "justify-content-center", "align-items-center", "mt-2");
+      deleteButton.style.display = "block"; // Ensure it's displayed as a block element
       deleteButton.addEventListener("click", this.removeFromCart)
-      div.appendChild(deleteButton)
-      this.element.prepend(div)
-    }
-
-    const totalEl = document.createElement("div")
-    totalEl.innerText= `Total: $${total/100.0}`
-    let totalContainer = document.getElementById("total")
-    totalContainer.appendChild(totalEl)
+     
+      row.appendChild(cell1);
+      row.appendChild(cell4);
+      row.appendChild(cell2);
+      row.appendChild(cell3);
+      row.appendChild(cell5);
+      row.appendChild(deleteButton)
+      row.appendChild(deleteButton)
+      tbody.appendChild(row);
+    }    
   }
 
   clear() {
@@ -52,8 +88,12 @@ export default class extends Controller {
 
   checkout() {
     const cart = JSON.parse(localStorage.getItem("cart"))
+    const email = this.emailTarget.value
+    const address = this.addressTarget.value
     const payload = {
       authenticity_token: "",
+      address: address,
+      email: email,
       cart: cart
     }
 

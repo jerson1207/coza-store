@@ -2,13 +2,17 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="products"
 export default class extends Controller {
-  static values = { size: String, product: Object }
-
+  static values = { size: String, product: Object, image: String  }
+  
+  
   addToCart() {
+    
     console.log("product: ", this.productValue)
+    console.log("size: ", this.sizeValue)
     const cart = localStorage.getItem("cart")
     if (cart) {
       const cartArray = JSON.parse(cart)
+
       const foundIndex = cartArray.findIndex(item => item.id === this.productValue.id && item.size === this.sizeValue)
       if (foundIndex >= 0) {
         cartArray[foundIndex].quantity = parseInt(cartArray[foundIndex].quantity) + 1
@@ -18,7 +22,8 @@ export default class extends Controller {
           name: this.productValue.name,
           price: this.productValue.price,
           size: this.sizeValue,
-          quantity: 1
+          quantity: 1,
+          image: this.imageValue
         })
       }
       localStorage.setItem("cart", JSON.stringify(cartArray))
@@ -29,7 +34,8 @@ export default class extends Controller {
         name: this.productValue.name,
         price: this.productValue.price,
         size: this.sizeValue,
-        quantity: 1
+        quantity: 1,
+        image: this.imageValue
       })
       localStorage.setItem("cart", JSON.stringify(cartArray))
     }
