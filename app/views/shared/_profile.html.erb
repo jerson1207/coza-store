@@ -1,0 +1,13 @@
+<div class="dropdown">
+  <button class="dropdown-button">
+    <i class="fas fa-user profile-icon"></i>
+    <i class="fas fa-chevron-down dropdown-icon"></i>
+  </button>
+  <div class="dropdown-menu">
+    <%= link_to "My Orders", my_order_path %>
+    <%= link_to "Settings", edit_user_registration_path %>
+    <%= link_to destroy_user_session_path, data: { "turbo-method": :delete, "turbo-confirm": "Are you sure you want to sign out?" } do %>
+      Logout
+    <% end %>
+  </div>
+</div>

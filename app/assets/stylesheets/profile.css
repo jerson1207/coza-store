@@ -1,0 +1,52 @@
+/* Basic styling for the dropdown */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Style the button that will trigger the dropdown */
+.dropdown-button {
+  background-color: transparent; /* Transparent background */
+  color: transparent; /* Transparent text color */
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+/* Style the profile icon */
+.profile-icon {
+  color: #4CAF50; /* Color for the profile icon */
+  font-size: 20px;
+}
+
+/* Style the dropdown icon */
+.dropdown-icon {
+  color: #333; /* Color for the dropdown arrow */
+  font-size: 12px;
+  margin-left: 5px;
+}
+
+/* Style the dropdown menu */
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Style links inside the dropdown */
+.dropdown-menu a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-menu a:hover {background-color: #f1f1f1;}
+
+/* Show the dropdown menu when the user clicks on the button */
+.dropdown:hover .dropdown-menu {display: block;}

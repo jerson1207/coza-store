@@ -19,9 +19,9 @@
           <%= link_to cart_path, class: "text-gray-500 hover:underline py-2 rounded-md text-md font-medium" do %>
             <%= icon 'fa-solid', 'shopping-cart' %>
           <% end %>
-          <%= link_to destroy_user_session_path, data: { "turbo-method": :delete, "turbo-confirm": "Are you sure you want to sign out?" }, class: "ml-4 text-gray-500 hover:underline py-2 rounded-md text-md font-medium" do %>
-            Sign out
-          <% end %>
+            <%= render "shared/profile" %>
+          
+          
         <% else %>
           <%= link_to "Sign in", new_user_session_path, class: "text-gray-500 hover:underline py-2 rounded-md text-md font-medium" %>
           <%= link_to "Sign up", new_user_registration_path, class: "ml-4 text-gray-500 hover:underline py-2 rounded-md text-md font-medium" %>

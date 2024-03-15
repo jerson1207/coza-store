@@ -9,6 +9,7 @@ export default class extends Controller {
     
     console.log("product: ", this.productValue)
     console.log("size: ", this.sizeValue)
+    console.log("test")
     const cart = localStorage.getItem("cart")
     if (cart) {
       const cartArray = JSON.parse(cart)

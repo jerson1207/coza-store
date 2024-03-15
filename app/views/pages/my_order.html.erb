@@ -1,0 +1,46 @@
+<% @orders.each do |order| %>
+  <div class="bg-white rounded-lg shadow-md overflow-hidden mb-6">
+    <div class="p-6">
+      <div class="flex justify-between items-center mb-4">
+        <h2 class="text-xl font-semibold text-gray-800">Order Details : <%= order.id %></h2>
+        <span class="text-sm text-gray-600"><%= order_status(order) %></span>
+      </div>
+      
+      <table class="w-full">
+        <thead>
+          <tr>
+            <th class="py-2 px-4 bg-gray-100 text-sm text-gray-600 uppercase">Item</th>
+            <th class="py-2 px-4 bg-gray-100 text-sm text-gray-600 uppercase">Size</th>
+            <th class="py-2 px-4 bg-gray-100 text-sm text-gray-600 uppercase">Price</th>
+            <th class="py-2 px-4 bg-gray-100 text-sm text-gray-600 uppercase">Quantity</th>
+            <th class="py-2 px-4 bg-gray-100 text-sm text-gray-600 uppercase">Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% order.order_items.each do |item| %>
+            <tr>
+              <td class="py-2 px-4 text-sm text-gray-800"><%= item_name(item.id) %></td>
+              <td class="py-2 px-4 text-sm text-gray-800"><%= item_size(item.id) %></td>
+              <td class="py-2 px-4 text-sm text-gray-800"><%= item_price(item.id) %></td>
+              <td class="py-2 px-4 text-sm text-gray-800"><%= item_quantity(item.id) %></td>
+              <td class="py-2 px-4 text-sm text-gray-800"><%= item_total(item.id) %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="border-t border-gray-200 p-6">
+      <div class="mb-4">
+        <h3 class="text-lg font-semibold text-gray-800">Shipping Information</h3>
+        <p class="text-sm text-gray-800">Email: <%= order.customer_email %></p>
+        <p class="text-sm text-gray-800">Shipping Address: <%= order.address %></p>
+      </div>
+
+      <div class="flex justify-between items-center">
+        <span class="text-lg font-semibold text-gray-700">Total:</span>
+        <span class="text-lg font-semibold text-gray-900"><%= grand_total(order) %></span>
+      </div>
+    </div>
+  </div>
+<% end %>

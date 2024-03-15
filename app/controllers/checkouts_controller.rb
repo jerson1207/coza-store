@@ -3,8 +3,7 @@ class CheckoutsController < ApplicationController
 
     stripe_secret_key = Rails.application.credentials.dig(:stripe, :secret_key)
     Stripe.api_key = stripe_secret_key
-   
-  
+      
     cart = params[:cart]
     email_params = params[:email]
     address_params = params[:address]

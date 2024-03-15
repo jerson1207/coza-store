@@ -1,4 +1,5 @@
 @import "custom.css";
+@import "profile.css";
 
 @tailwind base;
 @tailwind components;
