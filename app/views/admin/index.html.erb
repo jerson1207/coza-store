@@ -50,7 +50,7 @@
       <thead>
         <tr class="text-gray-800">
           <th class="px-6 py-3 border-b-2 border-gray-200 bg-gray-100">Order ID</th>
-          <th class="px-6 py-3 border-b-2 border-gray-200 bg-gray-100">Customer</th>
+          <th class="px-6 py-3 border-b-2 border-gray-200 bg-gray-100">Customer ID</th>
           <th class="px-6 py-3 border-b-2 border-gray-200 bg-gray-100">Date</th>
           <th class="px-6 py-3 border-b-2 border-gray-200 bg-gray-100">Amount</th>
         </tr>
@@ -62,13 +62,13 @@
               <%= link_to order.id, admin_order_path(order), class: "underline" %>
             </td>
             <td class="px-6 py-4 border-b border-gray-200">
-              <%= order.customer_email %>
+              <%= order.user_id %>
             </td>
             <td class="px-6 py-4 border-b border-gray-200">
               <%= order.created_at.strftime("%B %d, %Y %H:%M") %>
             </td>
             <td class="px-6 py-4 border-b border-gray-200">
-              <%= (order.total/100.0).to_s %>
+              <%= (order.total).to_s %>
             </td>
           </tr>
         <% end %>

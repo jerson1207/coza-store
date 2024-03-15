@@ -7,6 +7,8 @@ Rails.application.routes.draw do
       resources :stocks
     end
     resources :categories, except: [:show]
+    resources :users, only: [:index]
+
   end
   
   devise_for :admins
@@ -19,6 +21,8 @@ Rails.application.routes.draw do
   end
 
   get 'admin' => 'admin#index'
+
+
   resources :categories, only: [:show]
   resources :products, only: [:index, :show]
 
