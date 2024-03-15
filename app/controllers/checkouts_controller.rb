@@ -1,6 +1,5 @@
 class CheckoutsController < ApplicationController
   def create
-
     stripe_secret_key = Rails.application.credentials.dig(:stripe, :secret_key)
     Stripe.api_key = stripe_secret_key
       
@@ -30,8 +29,6 @@ class CheckoutsController < ApplicationController
       } 
     end
 
-    puts "line_items: #{line_items}"
-
     session = Stripe::Checkout::Session.create(
       mode: "payment",
       line_items: line_items,
@@ -49,7 +46,6 @@ class CheckoutsController < ApplicationController
     line_items = JSON.parse(params[:line_items])
     email = JSON.parse(params[:email])
     address = JSON.parse(params[:address])
-    
     customer_email = current_user.email
     address = address
     order = Order.new(customer_email: email, address: address, fulfilled: false)
@@ -90,7 +86,12 @@ class CheckoutsController < ApplicationController
   end
 
   def order_total(order)
-    order.update(total: order.order_items.sum(&:price))
+    total = []
+    order.order_items.each do |item|
+      total_item = item.quantity * item.price
+      total << total_item
+    end
+    order.update(total: total.sum)
   end
 
   private

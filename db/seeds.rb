@@ -124,17 +124,18 @@ women_category.products.create([
       { io: File.open(Rails.root.join('app/assets/images/products/product-women-10.jpg')), filename: 'product-01.jpg' }
     ]
   }
-  
 ])
 
 # Stock
 Product.all.each do |product|
-  Stock.create(product: product, size: 'Size M', amount: 100)
   Stock.create(product: product, size: 'Size S', amount: 100)
+  Stock.create(product: product, size: 'Size M', amount: 100)
   Stock.create(product: product, size: 'Size L', amount: 100)
   Stock.create(product: product, size: 'Size XL', amount: 100)
 end
 
-# Admin
+# Admin/Users
 Admin.create(email: "admin@test.com", password: "qwerty", password_confirmation: "qwerty")
-User.create(email: "user1@test.com", password: "qwerty", password_confirmation: "qwerty")
+5.times do |i|
+  User.create(email: "user#{i + 1}@test.com", password: "qwerty", password_confirmation: "qwerty")
+end
