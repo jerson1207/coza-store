@@ -15,3 +15,6 @@ application.register("hello", HelloController)
 
 import ProductsController from "./products_controller"
 application.register("products", ProductsController)
+
+import SliderController from "./slider_controller"
+application.register("slider", SliderController)

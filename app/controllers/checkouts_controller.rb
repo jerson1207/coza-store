@@ -24,7 +24,7 @@ class CheckoutsController < ApplicationController
             metadata: { product_id: product.id, size: item["size"], product_stock_id: product_stock.id }
           },
           currency: "usd",
-          unit_amount: item["price"].to_i
+          unit_amount: item["price"].to_f
         }
       } 
     end
@@ -56,6 +56,7 @@ class CheckoutsController < ApplicationController
         quantity = item_params["quantity"]
         size = item_params["price_data"]["product_data"]["metadata"]["size"]
         price = item_params["price_data"]["unit_amount"]
+        # https://docs.stripe.com/currencies#zero-decimal
 
         order_item = OrderItem.new(
           order_id: order.id,

@@ -1,0 +1,30 @@
+  <section class="slideshow-container" data-controller="slider" style="padding-top: 4rem;" data-controller="slider">
+    <div class="mySlides fade" data-slider-target="slide">
+      <div class="content">
+        <h1 class="line1">Wemen Collection 2024</h1>
+        <h1 class="line2">NEW season</h1>
+        <%= link_to "Shop Now", root_path, class: "btn-shop_now" %>
+      </div>
+      <%= image_tag("slider/slide-01", alt: "IMG-slide", class: "w-full slides") %>
+    </div>
+
+    <div class="mySlides fade" data-slider-target="slide">
+      <div class="content">
+        <h1 class="line1">Wemen Collection 2024</h1>
+        <h1 class="line2">NEW season</h1>
+        <%= link_to "Shop Now", root_path, class: "btn-shop_now" %>
+      </div>
+      <%= image_tag("slider/slide-02", alt: "IMG-slide", class: "w-full slides") %>
+    </div>
+
+    <div class="mySlides fade" data-slider-target="slide">
+      <div class="content">
+        <h1 class="line1">Wemen Collection 2024</h1>
+        <h1 class="line2">NEW season</h1>
+        <%= link_to "Shop Now", root_path, class: "btn-shop_now" %>
+      </div>
+      <%= image_tag("slider/slide-03", alt: "IMG-slide", class: "w-full slides") %>
+    </div>  
+    <a class="prev" data-action="click->slider#previousSlide">&#10094;</a>
+  	<a class="next" data-action="click->slider#nextSlide">&#10095;</a>
+  </section>
