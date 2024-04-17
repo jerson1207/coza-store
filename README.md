@@ -1,24 +1,40 @@
-# README
+## Coza Store
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## To get started with this project, follow the steps below:
+### Prerequisites
+Make sure you have the following installed on your system:
+- ruby 3.3.0 
+- Rails 7.1.3.2
+- Bundler version 2.5.6
+- Clone the Repository
+- Stripe
 
-Things you may want to cover:
+### Clone the Repository
+```
+git clone https://github.com/jerson1207/coza-store.git
+cd [repository project]
+```
 
-* Ruby version
+## Install Dependencies
+```
+bundle install
+```
+## Database Setup
+Make sure you have a database configured in config/database.yml. Then run the following commands:
+```
+rails db:create
+rails db:migrate
+```
 
-* System dependencies
+## Seed the Database
+```
+rails db:seed
+```
+## Start website
+```
+ben/dev
+```
+## Ensure you have a functional Stripe installation
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+**Refer to the Stripe Documentation**
+- [Stripe CLI Documentation](https://docs.stripe.com/stripe-cli)
