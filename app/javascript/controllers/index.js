@@ -7,6 +7,9 @@ import { application } from "./application"
 import CartController from "./cart_controller"
 application.register("cart", CartController)
 
+import CategoryFilterController from "./category_filter_controller"
+application.register("category-filter", CategoryFilterController)
+
 import DashboardController from "./dashboard_controller"
 application.register("dashboard", DashboardController)
 

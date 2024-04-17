@@ -1,6 +1,44 @@
 <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
   <h2 class="text-2xl font-bold text-gray-900 mb-8">All Products</h2> <!-- New heading for the label -->
+
+
+  <button class='btn-filter'>All</button>
+  <button class='btn-filter'>men</button>
+  <button class='btn-filter'>women</button>
+
+
+
+
+
+
+
+
+<br><br><br><br><br>
+
+
+
+
+
+
+
+
+
+<!-- Product List -->
+<div class="products">
+  <% @products.each do |product| %>
+    <div class="product" data-category-id="<%= product.category_id %>">
+      <!-- Product details here -->
+      <h3><%= product.name %></h3>
+      <p><%= product.description %></p>
+      <span><%= number_to_currency(product.price) %></span>
+    </div>
+  <% end %>
+</div>
+  
+  
   <div class="mt-6 grid grid-cols-1 gap-x-6 gap-y-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+    
+    
     <% @products.each do |product| %>
       <div class="group relative">
         <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
