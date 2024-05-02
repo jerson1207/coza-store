@@ -20,7 +20,7 @@ export default class extends Controller {
     if (!ctx) return;
 
     new Chart(ctx, {
-      type: 'line',
+      type: 'bar',
       data: {
         labels: labels,
         datasets: [{

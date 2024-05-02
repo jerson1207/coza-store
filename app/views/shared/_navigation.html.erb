@@ -7,8 +7,18 @@
         </div>
         <div class="hidden sm:block sm:ml-6">
           <div class="flex space-x-4">
-            <%= link_to 'Home', root_path, class: "text-gray-500 hover:underline py-2 rounded-md text-md font-medium" %>
-            <%= link_to 'Shop', products_path, class: "text-gray-500 hover:underline py-2 rounded-md text-md font-medium" %>
+            <%= link_to 'Home', root_path, 
+                class: "text-gray-500 hover:underline py-2 rounded-md text-md font-medium #{current_page?(root_path) ? 'active_link' : ''}" %>
+            <%= link_to 'Shop', products_path, 
+                class: "text-gray-500 hover:underline py-2 rounded-md text-md font-medium #{current_page?(products_path) ? 'active_link' : ''}" %>
+            <%= link_to 'Feature', features_path, 
+                class: "text-gray-500 hover:underline py-2 rounded-md text-md font-medium #{current_page?(features_path) ? 'active_link' : ''}" %>
+            <%= link_to 'Blog', blog_index_path, 
+                class: "text-gray-500 hover:underline py-2 rounded-md text-md font-medium #{current_page?(blog_index_path) ? 'active_link' : ''}" %>
+            <%= link_to 'About', about_path, 
+                class: "text-gray-500 hover:underline py-2 rounded-md text-md font-medium #{current_page?(about_path) ? 'active_link' : ''}" %>
+            <%= link_to 'Contact', contact_path, 
+                class: "text-gray-500 hover:underline py-2 rounded-md text-md font-medium #{current_page?(contact_path) ? 'active_link' : ''}" %>
           </div>
         </div>
       </div>

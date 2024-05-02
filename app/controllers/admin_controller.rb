@@ -1,33 +1,33 @@
 class AdminController < ApplicationController
   layout 'admin'
   before_action :authenticate_admin!
+
+  def filter
+    
+  end
   
   def index
-    @orders = Order.where(fulfilled: false).order(created_at: :desc).take(5)
+    @start_dates = params[:start_date].present? ?  params[:start_date] : Date.today.beginning_of_month.to_s
+    @end_dates = params[:end_date].present? ?  params[:end_date] : Date.today.to_s
     
+    @min_date = Order.minimum(:created_at).to_date.to_s
+    @max_date = Date.today.to_s
+
+    start_date = params[:start_date].present? ? Date.parse(params[:start_date]).beginning_of_day : Date.today.beginning_of_month
+    end_date = params[:end_date].present? ? Date.parse(params[:end_date]).end_of_day : Date.today
+
+    @orders = Order.where(fulfilled: false)
+                   .where(created_at: start_date..end_date)
+                   .order(created_at: :desc)
     @quick_stats = { 
       sales: Order.where(created_at: Time.now.midnight..Time.now).count,
       revenue: Order.where(created_at: Time.now.midnight..Time.now).sum(:total)&.round(),
       avg_sale: Order.where(created_at: Time.now.midnight..Time.now).average(:total)&.round(),
       per_sale: OrderProduct.joins(:order).where(orders: { created_at: Time.now.midnight..Time.now })&.average(:quantity)
     }
-    @orders_by_day = Order.where('created_at > ?', Time.now - 7.days).order(:created_at)
+    @orders_by_day = Order.where(created_at: start_date..end_date)
     @orders_by_day = @orders_by_day.group_by { |order| order.created_at.to_date }
-    @revenue_by_day = @orders_by_day.map { |day, orders| [day.strftime("%A"), orders.sum(&:total)] }
-    if @revenue_by_day.count < 7
-      days_of_week = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
-
-      data_hash = @revenue_by_day.to_h
-      current_day = Date.today.strftime("%A")
-      current_day_index = days_of_week.index(current_day)
-      next_day_index = (current_day_index + 1) % days_of_week.length
-
-      ordered_days_with_current_last = days_of_week[next_day_index..-1] + days_of_week[0...next_day_index]
-
-      complete_ordered_array_with_current_last = ordered_days_with_current_last.map{ |day| [day, data_hash.fetch(day, 0)] }
-
-      @revenue_by_day = complete_ordered_array_with_current_last 
-    end
+    @revenue_by_day = @orders_by_day.map { |day, orders| [day.to_s, orders.sum(&:total)] }
   end
 
 end

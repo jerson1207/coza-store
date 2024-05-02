@@ -13,6 +13,9 @@ application.register("category-filter", CategoryFilterController)
 import DashboardController from "./dashboard_controller"
 application.register("dashboard", DashboardController)
 
+import FilterdateController from "./filterdate_controller"
+application.register("filterdate", FilterdateController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 

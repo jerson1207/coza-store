@@ -1,4 +1,8 @@
 <h1>Admin Home</h1>
+<%= form_tag(admin_path, method: :get, data: { controller: "filterdate" }   ) do %>
+  <%= date_field_tag 'start_date', @start_dates, id: 'start_date', min: @min_date, max: @max_date, data: { action: "change->filterdate#handleChange" }  %>
+  <%= date_field_tag 'end_date', @end_dates, id: 'end_date', min: @min_date, max: @max_date, data: { action: "change->filterdate#handleChange" }  %>
+<% end %>
 
 <div class="flex justify-between flex-wrap mt-8 w-full items-center max-w-4xl">
   <h2 class="text-2xl text-gray-800 font-medium mb-4">Daily Stats</h2>

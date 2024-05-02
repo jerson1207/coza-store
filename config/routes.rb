@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   end
 
   get 'admin' => 'admin#index'
+  get 'filter' => 'admin#filter'
 
 
   # resources :categories, only: [:show]
@@ -28,11 +29,16 @@ Rails.application.routes.draw do
     resources :products, only: [:index]
   end
   resources :products, only: [:index, :show]
+  resources :features, only: [:index]
+  resources :blog, only: [:index]
+  get "about" => "pages#about" 
+  get "contact" => "pages#contact"
 
   get "cart" => "carts#show"
   post "checkout" => "checkouts#create"
   get "success" => "checkouts#success"
   get "cancel" => "checkouts#cancel"
   get "my_order" => "pages#my_order"
+  
 
 end
